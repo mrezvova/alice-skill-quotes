@@ -42,7 +42,7 @@ def respond():
 
     elif 'цитата' in command or 'афоризмизатор' in command:
         quote, author = random_quote()
-        response_text = f'{quote}\n\t\t\t{author}'
+        response_text = f'{quote}\n\n{author}'
         response_tts = f'{quote}\n\t\t\t sil <[2000]> {author}'
     else:
         response_text = 'Афоризмизатор не понял. Повтори.'
