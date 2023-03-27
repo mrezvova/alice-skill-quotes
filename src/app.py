@@ -44,6 +44,8 @@ def respond():
         quote, author = random_quote()
         response_text = f'{quote}\n\n{author}'
         response_tts = f'{quote}\n\t\t\t sil <[2000]> {author}'
+    elif '' == command:
+        response_text = HELLO_TEXT
     else:
         response_text = 'Афоризмизатор не понял. Повтори.'
         response_tts = 'Афоризмизатор не понял. sil <[1000]> Повтори.'
