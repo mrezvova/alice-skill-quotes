@@ -43,30 +43,35 @@ def respond():
     response_tts = None
     response_text = None
 
-    if 'выход' in command or 'Рота' in command:
+    if 'выход' in command or 'рота' in command or 'ротазимзирофа' in command:
         rand = choice(EXIT_TEXTS)
         response_text, response_tts = rand, rand
         end_session = True
 
-    elif 'цитата' in command or 'афоризм' in command or 'цитату' in command or 'ещё' in command and 'день' not in command and 'предсказание' not in command:
+    elif 'афоризмизатор' in command or 'цитата' in command or 'афоризм' in command or 'цитату' in command or 'ещё' in command and 'день' not in command and 'предсказание' not in command:
         quote, author = random_quote()
-        rand_start_text = choice(QUOTE_TEXTS)
+        rand_start_text = choice(QUOTE_START_TEXTS)
         text = rand_start_text
         response_text = f'{text}\n\n{quote}\n\n{author}'
         response_tts = f'{text}\n\n{quote}\n\t\t\t sil <[2000]> {author}'
+
     elif '' == command:
         response_text = HELLO_TEXT
         response_tts = HELLO_TEXT
+
     elif 'помощь' in command:
         response_text = f'Надоели цитаты? Скажи "Выход"'
         response_tts = f'Надоели цитаты? Скажи "Выход"'
+
     elif 'умеешь' in command:
         response_text = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
         response_tts = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
+
     elif 'дня' in command or 'день' in command or 'предсказание' in command:
         quote, author = random_quote()
         response_text = f'Твое предсказание на день:\n\n{quote}\n\n{author}'
         response_tts = f'Твое предсказание на день:\n\n{quote}\n\t\t\t sil <[2000]> {author}'
+
     else:
         response_text = 'Афоризмизатор не понял. Повтори.'
         response_tts = 'Афоризмизатор не понял. sil <[1000]> Повтори.'
