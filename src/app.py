@@ -29,7 +29,9 @@ def random_quote():
         'https://quotes15.p.rapidapi.com/quotes/random/?language_code=ru', headers={"x-rapidapi-key": "4989fbb212msh00333aef0d189e4p16f2c4jsneeb2a01359ce"})
     data = response.json()
     quote, author = data['content'], data['originator']['name']
-    print(f"{quote}\n\t\t\t{author}")
+    while len(response_text) > 950:
+        random_quote()
+    # print(f"{quote}\n\t\t\t{author}")
     return quote, author
 
 
@@ -60,8 +62,8 @@ def respond():
         response_tts = HELLO_TEXT
 
     elif 'помощь' in command:
-        response_text = f'Надоели цитаты? Скажи "Выход"'
-        response_tts = f'Надоели цитаты? Скажи "Выход"'
+        response_text = f'Надоели цитаты? Скажи "Выход". Хочешь ещё цитату, скажи "цитата"'
+        response_tts = f'Надоели цитаты? Скажи "Выход". Хочешь ещё цитату, скажи "цитата"'
 
     elif 'умеешь' in command:
         response_text = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
@@ -70,7 +72,7 @@ def respond():
     elif 'дня' in command or 'день' in command or 'предсказание' in command:
         quote, author = random_quote()
         response_text = f'Твое предсказание на день:\n\n{quote}\n\n{author}'
-        response_tts = f'Твое предсказание на день:\n\n{quote}\n\t\t\t sil <[2000]> {author}'
+        response_tts = f'Твое предсказание на день:\n\n{quote}\n\t\t\t sil <[1000]> {author}'
 
     else:
         response_text = 'Афоризмизатор не понял. Повтори.'
@@ -78,9 +80,17 @@ def respond():
 
     response = {
         'response': {
-            'text': response_text if len(response_text) < 1024 else respond(),
+            'text': response_text,
             'tts': response_tts if response_tts else response_text,
-            'end_session ': end_session
+            'end_session': end_session
+            'buttons': [
+                {
+                    "title": "помощь",
+                    "payload": {},
+                    "url": "",
+                    "hide": False
+                }
+            ],
         },
 
         'version': '1.0'
