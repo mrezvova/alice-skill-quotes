@@ -82,7 +82,7 @@ def respond():
         'response': {
             'text': response_text,
             'tts': response_tts if response_tts else response_text,
-            'end_session': end_session
+            'end_session': end_session,
             'buttons': [
                 {
                     "title": "помощь",
