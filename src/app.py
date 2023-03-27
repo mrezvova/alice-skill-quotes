@@ -40,7 +40,7 @@ def respond():
         response_text = 'До свидания! Афоризмизатор был рад служить.'
         end_session = True
 
-    elif 'цитата' in command or 'афоризмизатор' in command or 'цитату' in command:
+    elif 'цитата' in command or 'афоризмизатор' in command or 'цитату' in command or 'ещё' in command:
         quote, author = random_quote()
         response_text = f'{quote}\n\n{author}'
         response_tts = f'{quote}\n\t\t\t sil <[2000]> {author}'
@@ -50,7 +50,7 @@ def respond():
     elif 'помощь' in command:
         response_text = f'Надоели цитаты? Скажи "Выход"'
         response_tts = f'Надоели цитаты? Скажи "Выход"'
-    elif 'что ты умеешь делать?' in command:
+    elif 'умеешь' in command:
         response_text = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
         response_tts = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
     else:
