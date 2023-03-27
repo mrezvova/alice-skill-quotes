@@ -50,7 +50,7 @@ def respond():
         response_text, response_tts = rand, rand
         end_session = True
 
-    elif 'афоризмизатор' in command or 'цитата' in command or 'афоризм' in command or 'цитату' in command or 'ещё' in command and 'день' not in command and 'предсказание' not in command and 'дня' not in command:
+    elif 'афоризмизатор' in command or 'цитата' in command or 'афоризм' in command or 'цитату' in command or 'ещ' in command and 'день' not in command and 'предсказание' not in command and 'дня' not in command:
         quote, author = random_quote()
         rand_start_text = choice(QUOTE_START_TEXTS)
         text = rand_start_text
