@@ -44,6 +44,10 @@ def respond():
         quote, author = random_quote()
         response_text = f'{quote}\n\n{author}'
         response_tts = f'{quote}\n\t\t\t sil <[2000]> {author}'
+        while response_text > 1024:
+            quote, author = random_quote()
+            response_text = f'{quote}\n\n{author}'
+            response_tts = f'{quote}\n\t\t\t sil <[2000]> {author}'
     elif '' == command:
         response_text = HELLO_TEXT
         response_tts = HELLO_TEXT
