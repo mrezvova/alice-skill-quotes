@@ -88,7 +88,17 @@ def respond():
                     "title": "помощь",
                     "payload": {},
                     "hide": False,
-                }
+                },
+                {
+                    "title": "ещё цитату",
+                    "payload": {},
+                    "hide": False,
+                },
+                {
+                    "title": "выход",
+                    "payload": {},
+                    "hide": False,
+                },
             ],
         },
 
