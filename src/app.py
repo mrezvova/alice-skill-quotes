@@ -87,8 +87,7 @@ def respond():
                 {
                     "title": "помощь",
                     "payload": {},
-                    "url": "",
-                    "hide": False
+                    "hide": False,
                 }
             ],
         },
