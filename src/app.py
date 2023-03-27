@@ -29,10 +29,10 @@ def random_quote():
         'https://quotes15.p.rapidapi.com/quotes/random/?language_code=ru', headers={"x-rapidapi-key": "4989fbb212msh00333aef0d189e4p16f2c4jsneeb2a01359ce"})
     data = response.json()
     quote, author = data['content'], data['originator']['name']
-    while len(response_text) > 950:
-        random_quote()
     # print(f"{quote}\n\t\t\t{author}")
     return quote, author
+    while len(response_text) > 950:
+        random_quote()
 
 
 @app.route('/', methods=['POST'])
