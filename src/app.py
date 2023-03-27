@@ -53,6 +53,10 @@ def respond():
     elif 'умеешь' in command:
         response_text = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
         response_tts = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
+    elif 'день' in command or 'предсказание' in command:
+        quote, author = random_quote()
+        response_text = f'Твое предсказание на день:\n\n{quote}\n\n{author}'
+        response_tts = f'Твое предсказание на день:\n\n{quote}\n\t\t\t sil <[2000]> {author}'
     else:
         response_text = 'Афоризмизатор не понял. Повтори.'
         response_tts = 'Афоризмизатор не понял. sil <[1000]> Повтори.'
