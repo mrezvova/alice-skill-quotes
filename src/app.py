@@ -1,5 +1,8 @@
+from random import choice
+
 from flask import Flask, request
 import requests
+
 
 app = Flask(__name__)
 
@@ -15,6 +18,10 @@ HELLO_TEXT = '''
 или
 "Ротазимзирофа".
 '''
+QUOTE_START_TEXTS = ['Ещё одна клевая цитата!:',
+                     'Этот афоризм тебе точно понравится!:', 'А вот и цитата!:']
+EXIT_TEXTS = ['До свидания! Афоризмизатор был рад служить',
+              'Приятно было иметь дело с тобой!\n\nТвой Афоризмизатор ', 'До новых цитат! Пока!']
 
 
 def random_quote():
@@ -36,14 +43,17 @@ def respond():
     response_tts = None
     response_text = None
 
-    if 'выход' in command or 'Ротазимзирофа' in command:
-        response_text = 'До свидания! Афоризмизатор был рад служить.'
+    if 'выход' in command or 'Рота' in command:
+        rand = choice(EXIT_TEXTS)
+        response_text, response_tts = rand, rand
         end_session = True
 
-    elif 'цитата' in command or 'афоризмизатор' in command or 'цитату' in command or 'ещё' in command:
+    elif 'цитата' in command or 'афоризм' in command or 'цитату' in command or 'ещё' in command and 'день' not in command and 'предсказание' not in command:
         quote, author = random_quote()
-        response_text = f'{quote}\n\n{author}'
-        response_tts = f'{quote}\n\t\t\t sil <[2000]> {author}'
+        rand_start_text = choice(QUOTE_TEXTS)
+        text = rand_start_text
+        response_text = f'{text}\n\n{quote}\n\n{author}'
+        response_tts = f'{text}\n\n{quote}\n\t\t\t sil <[2000]> {author}'
     elif '' == command:
         response_text = HELLO_TEXT
         response_tts = HELLO_TEXT
@@ -53,7 +63,7 @@ def respond():
     elif 'умеешь' in command:
         response_text = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
         response_tts = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
-    elif 'день' in command or 'предсказание' in command:
+    elif 'дня' in command or 'день' in command or 'предсказание' in command:
         quote, author = random_quote()
         response_text = f'Твое предсказание на день:\n\n{quote}\n\n{author}'
         response_tts = f'Твое предсказание на день:\n\n{quote}\n\t\t\t sil <[2000]> {author}'
