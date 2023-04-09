@@ -49,7 +49,7 @@ def respond():
     response_text = None
 
     if 'выход' in command or 'рота' in command or 'ротазимзирофа' in command:
-        rand = choice(HELP_TEXT)
+        rand = choice(EXIT_TEXTS)
         response_text, response_tts = rand, rand
         end_session = True
 
@@ -65,7 +65,7 @@ def respond():
         response_tts = HELLO_TEXT
 
     elif 'помощь' in command:
-        rand = choice(EXIT_TEXTS)
+        rand = choice(HELP_TEXT)
         response_text, response_tts = rand, rand
 
     elif 'умеешь' in command:
