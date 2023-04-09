@@ -18,6 +18,9 @@ HELLO_TEXT = '''
 или
 "Ротазимзирофа".
 '''
+HELP_TEXT = ['Надоели цитаты? Скажи "Выход". Хочешь ещё цитату, скажи "цитата"',
+             'Надоели цитаты? Скажи "Выход". Хочешь ещё цитату, скажи "цитата"',
+             ]
 QUOTE_START_TEXTS = ['Ещё одна клевая цитата!:',
                      'Этот афоризм тебе точно понравится!:', 'А вот и цитата!:']
 EXIT_TEXTS = ['До свидания! Афоризмизатор был рад служить',
@@ -46,7 +49,7 @@ def respond():
     response_text = None
 
     if 'выход' in command or 'рота' in command or 'ротазимзирофа' in command:
-        rand = choice(EXIT_TEXTS)
+        rand = choice(HELP_TEXT)
         response_text, response_tts = rand, rand
         end_session = True
 
@@ -62,8 +65,8 @@ def respond():
         response_tts = HELLO_TEXT
 
     elif 'помощь' in command:
-        response_text = f'Надоели цитаты? Скажи "Выход". Хочешь ещё цитату, скажи "цитата"'
-        response_tts = f'Надоело слушать цитаты? Скажи "Выход". Хочешь ещё интересных цитат, скажи "цитата"'
+        rand = choice(EXIT_TEXTS)
+        response_text, response_tts = rand, rand
 
     elif 'умеешь' in command:
         response_text = f'Я, Афоризмизатор могу многое! Хочешь цитату? Скажи "цитата"'
